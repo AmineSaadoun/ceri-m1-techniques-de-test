@@ -1,0 +1,24 @@
+version: 2.1
+
+jobs:
+  build:
+    docker:
+      - image: circleci/openjdk:8-jdk  # Utilisation d'une image Docker avec Java 8
+
+    working_directory: ~/project
+
+    steps:
+      - checkout  # Récupération du code source du repository
+
+      - run:
+          name: Execute unit tests with Maven
+          command: mvn test  # Exécution des tests unitaires avec Maven
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only: master  

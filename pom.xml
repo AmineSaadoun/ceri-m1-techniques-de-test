@@ -37,7 +37,14 @@
     </build>
 
     <!-- Dépendances -->
+    
+	
     <dependencies>
+    <dependency>
+	<groupId>org.apache.commons</groupId>
+	<artifactId>commons-collections4</artifactId>
+	<version>4.0</version>
+</dependency>
         <!-- Dépendance pour JUnit -->
         <dependency>
             <groupId>junit</groupId>
