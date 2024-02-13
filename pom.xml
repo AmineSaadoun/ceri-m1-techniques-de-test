@@ -11,6 +11,8 @@
 
     <!-- Configuration du cycle de vie -->
     <build>
+        <testSourceDirectory>src/test/java</testSourceDirectory>
+    
         <plugins>
             <!-- Plugin pour compiler le code source  -->
             <plugin>
@@ -18,7 +20,7 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
                 <configuration>
-                    <source>1.8</source>
+                    <source>1.8</source> 
                     <target>1.8</target>
                 </configuration>
             </plugin>
