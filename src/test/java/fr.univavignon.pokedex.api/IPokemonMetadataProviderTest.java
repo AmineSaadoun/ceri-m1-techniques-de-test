@@ -29,7 +29,7 @@ public class IPokemonMetadataProviderTest {
         PokemonMetadata metadata = pokemonMetadataProvider.getPokemonMetadata(133);
 
         // Vérifier si les résultats sont conformes aux attentes
-        assertNotEquals("Aquali", metadata.getName());
+        assertEquals("Aquali", metadata.getName());
         assertEquals(133, metadata.getIndex());
         assertEquals(186, metadata.getAttack());
         assertEquals(168, metadata.getDefense());
