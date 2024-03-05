@@ -38,7 +38,7 @@ public class IPokemonTrainerFactoryTest {
         PokemonTrainer pokemonTrainer = pokemonTrainerFactory.createTrainer(trainer, team, pokedexFactory);
 
         assertNotNull(pokemonTrainer);
-        assertEquals("toto", pokemonTrainer.getName());
+        assertEquals("Ash", pokemonTrainer.getName());
         assertEquals(team, pokemonTrainer.getTeam());
     }
 
