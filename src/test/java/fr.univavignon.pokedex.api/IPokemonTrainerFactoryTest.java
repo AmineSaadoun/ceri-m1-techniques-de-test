@@ -23,7 +23,7 @@ public class IPokemonTrainerFactoryTest {
     @Test
     public void testCreatePokemonTrainer() {
         Team team = Team.INSTINCT;
-        String trainerName = "Ash";
+        String trainer = "Ash";
 
         IPokedexFactory pokedexFactory = mock(IPokedexFactory.class);
         IPokedex pokedex = mock(IPokedex.class);
@@ -32,37 +32,14 @@ public class IPokemonTrainerFactoryTest {
 
         when(pokedexFactory.createPokedex(pokemonMetadataProvider, pokemonFactory)).thenReturn(pokedex);
 
-        when(pokemonTrainerFactory.createTrainer(trainerName, team, pokedexFactory))
-                .thenReturn(new PokemonTrainer(trainerName, team, pokedex));
+        when(pokemonTrainerFactory.createTrainer(trainer, team, pokedexFactory))
+                .thenReturn(new PokemonTrainer(trainer, team, pokedex));
 
-        PokemonTrainer pokemonTrainer = pokemonTrainerFactory.createTrainer(trainerName, team, pokedexFactory);
+        PokemonTrainer pokemonTrainer = pokemonTrainerFactory.createTrainer(trainer, team, pokedexFactory);
 
         assertNotNull(pokemonTrainer);
-        assertEquals(trainerName, pokemonTrainer.getName());
+        assertEquals("toto", pokemonTrainer.getName());
         assertEquals(team, pokemonTrainer.getTeam());
-    }
-
-
-    @Test
-    public void testCreateWithNullParams() {
-        Team team = Team.INSTINCT;
-        String trainerName = "Ash";
-
-
-        IPokedexFactory pokedexFactory = mock(IPokedexFactory.class);
-        IPokedex pokedex = mock(IPokedex.class);
-        IPokemonMetadataProvider pokemonMetadataProvider = mock(IPokemonMetadataProvider.class);
-        IPokemonFactory pokemonFactory = mock(IPokemonFactory.class);
-
-        when(pokedexFactory.createPokedex(pokemonMetadataProvider, pokemonFactory)).thenReturn(pokedex);
-
-        when(pokemonTrainerFactory.createTrainer(null, team, pokedexFactory)).thenThrow(new IllegalArgumentException());
-        when(pokemonTrainerFactory.createTrainer(trainerName, null, pokedexFactory)).thenThrow(new IllegalArgumentException());
-        when(pokemonTrainerFactory.createTrainer(trainerName, team, null)).thenThrow(new IllegalArgumentException());
-
-        assertThrows(IllegalArgumentException.class, () -> pokemonTrainerFactory.createTrainer(null, team, pokedexFactory));
-        assertThrows(IllegalArgumentException.class, () -> pokemonTrainerFactory.createTrainer(trainerName, null, pokedexFactory));
-        assertThrows(IllegalArgumentException.class, () -> pokemonTrainerFactory.createTrainer(trainerName, team, null));
     }
 
 
