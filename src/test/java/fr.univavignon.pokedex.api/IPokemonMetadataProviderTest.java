@@ -22,13 +22,10 @@ public class IPokemonMetadataProviderTest {
 
     @Test
     public void testGetPokemonMetadata() throws PokedexException {
-        // Définir le comportement attendu pour le mock
         when(this.pokemonMetadataProvider.getPokemonMetadata(133)).thenReturn(new PokemonMetadata(133,
                 "Aquali", 186, 168, 260));
-        // Appeler la méthode à tester
         PokemonMetadata metadata = pokemonMetadataProvider.getPokemonMetadata(133);
 
-        // Vérifier si les résultats sont conformes aux attentes
         assertEquals("Aquali", metadata.getName());
         assertEquals(133, metadata.getIndex());
         assertEquals(186, metadata.getAttack());
