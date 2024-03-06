@@ -78,6 +78,30 @@ public class IPokedexTest {
         assertEquals(Pokemon.class, pokemon.getClass());
 
     }
+    @Test
+    public void pokeSortedByNameTest() {
+        List<Pokemon> pokemons = Arrays.asList(
+                new Pokemon(133, "Aquali", 186, 168, 260, 2729, 202, 5000, 4, 0.91),
+                new Pokemon(0, "Bulbizarre", 130, 130, 100, 613, 64, 4000, 4, 0.91),
+                new Pokemon(1,
+                        "hmaid", 1430, 120, 110, 654, 54, 3000, 4, 0.70),
+                new Pokemon(3,
+                        "yarawkan", 145, 128, 97, 514, 64, 2094, 5, 0.87)
+        );
+
+        when(iPokedex.getPokemons(PokemonComparators.NAME)).thenReturn(pokemons);
+
+        List<Pokemon> sortedPokemons = iPokedex.getPokemons(PokemonComparators.NAME);
+
+        assertThrows(UnsupportedOperationException.class, () -> {
+            sortedPokemons.add(new Pokemon(8, "hakuna", 124, 100, 65, 316, 76, 2000, 5, 0.81));
+        });
+
+        assertEquals("Aquali", sortedPokemons.get(0).getName());
+        assertEquals("Bulbizarre", sortedPokemons.get(1).getName());
+        assertEquals("yarawkan", sortedPokemons.get(2).getName());
+        assertEquals("hmaid", sortedPokemons.get(3).getName());
+    }
 
 
 
