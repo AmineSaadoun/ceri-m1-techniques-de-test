@@ -44,9 +44,20 @@ public class IPokedexTest {
         when(this.iPokedex.size()).thenReturn(151);
         assertNotEquals(134, this.iPokedex.size());
     }
+    @Test
+    void addPokeTest() throws PokedexException {
+        Pokemon pokemon = new Pokemon(5,
+                "karazay", 349, 134,
+                79, 640, 64,
+                4302, 2, 0.32);
+        when(this.iPokedex.addPokemon(pokemon)).thenReturn(3);
+        int index = this.iPokedex.addPokemon(pokemon);
+        when(this.iPokedex.getPokemon(index)).thenReturn(pokemon);
+        Pokemon pokemonNew = this.iPokedex.getPokemon(index);
 
+        assertEquals("nimportqoi", pokemonNew.getName());
 
-
+    }
 
 
 
