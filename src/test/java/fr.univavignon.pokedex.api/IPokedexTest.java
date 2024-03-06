@@ -74,8 +74,8 @@ public class IPokedexTest {
 
         Pokemon pokemon = this.iPokedex.getPokemon(133);
 
-        assertEquals("azert", pokemon.getName());
-        assertNotEquals(Pokemon.class, pokemon.getClass());
+        assertEquals("Aquali", pokemon.getName());
+        assertEquals(Pokemon.class, pokemon.getClass());
 
     }
 
