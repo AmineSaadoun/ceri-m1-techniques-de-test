@@ -103,6 +103,21 @@ public class IPokedexTest {
         assertEquals("yarawkan", sortedPokemons.get(3).getName());
     }
 
+    @Test
+    void getPokemon() {
+        when(this.iPokedex.getPokemons()).thenReturn(pokemons);
+        List<Pokemon> pokemons = this.iPokedex.getPokemons();
+        assertNotNull(pokemons);
+
+        assertEquals(6, pokemons.size());
+        try{
+            pokemons.add(new Pokemon(4,
+                    "Ana", 135, 234, 56, 345, 64, 3000, 3, 0.85));
+            fail("On peut pas modifier la liste ");
+        } catch (UnsupportedOperationException e) {
+        }
+    }
+
 
 
 
