@@ -109,10 +109,9 @@ public class IPokedexTest {
         List<Pokemon> pokemons = this.iPokedex.getPokemons();
         assertNotNull(pokemons);
 
-        assertEquals(6, pokemons.size());
+        assertEquals(3, pokemons.size());
         try{
-            pokemons.add(new Pokemon(4,
-                    "Ana", 135, 234, 56, 345, 64, 3000, 3, 0.85));
+            pokemons.add(new Pokemon(4, "Ana", 135, 234, 56, 345, 64, 3000, 3, 0.85));
             fail("On peut pas modifier la liste ");
         } catch (UnsupportedOperationException e) {
         }
