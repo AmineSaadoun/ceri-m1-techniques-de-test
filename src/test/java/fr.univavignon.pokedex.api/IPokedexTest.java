@@ -55,7 +55,11 @@ public class IPokedexTest {
         when(this.iPokedex.getPokemon(index)).thenReturn(pokemon);
         Pokemon pokemonNew = this.iPokedex.getPokemon(index);
 
-        assertEquals("nimportqoi", pokemonNew.getName());
+        assertEquals("karazay", pokemonNew.getName());
+        assertEquals(2, pokemonNew.getCandy());
+
+        assertNotEquals(80, pokemonNew.getCp());
+
 
     }
 
