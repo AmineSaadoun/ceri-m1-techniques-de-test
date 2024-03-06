@@ -65,6 +65,22 @@ public class IPokedexTest {
 
 
 
+    @Test
+    void pokemonClassTest() throws PokedexException {
+        when(this.iPokedex.getPokemon(133)).thenReturn(new Pokemon(133, "Aquali", 186,
+                168, 260, 2729, 202
+                , 5000, 4, 0.91));
+
+
+        Pokemon pokemon = this.iPokedex.getPokemon(133);
+
+        assertEquals("azert", pokemon.getName());
+        assertNotEquals(Pokemon.class, pokemon.getClass());
+
+    }
+
+
+
 
 
 
