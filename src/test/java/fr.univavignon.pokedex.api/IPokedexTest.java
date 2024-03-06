@@ -99,8 +99,8 @@ public class IPokedexTest {
 
         assertEquals("Aquali", sortedPokemons.get(0).getName());
         assertEquals("Bulbizarre", sortedPokemons.get(1).getName());
-        assertEquals("yarawkan", sortedPokemons.get(2).getName());
-        assertEquals("hmaid", sortedPokemons.get(3).getName());
+        assertEquals("hmaid", sortedPokemons.get(2).getName());
+        assertEquals("yarawkan", sortedPokemons.get(3).getName());
     }
 
 
