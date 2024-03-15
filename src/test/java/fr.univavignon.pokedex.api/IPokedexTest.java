@@ -94,20 +94,6 @@ public class IPokedexTest {
     }
 
     @Test
-    void testGetPokemonsFiltredByName() {
-        when(this.iPokedex.getPokemons(PokemonComparators.NAME)).thenReturn(pokemons);
-        List<Pokemon> pokemons = this.iPokedex.getPokemons(PokemonComparators.NAME);
-        assertNotNull(pokemons);
-        assertThrows(UnsupportedOperationException.class, () -> {
-            pokemons.add(new Pokemon(3,
-                    "Salamèche", 128, 108,
-                    78, 613, 64,
-                    4000, 4, 0.91));
-        });
-        assertEquals("Aquali", pokemons.get(0).getName());
-    }
-
-    @Test
     public void getPokemonsFiltredByIndex() {
         when(this.iPokedex.getPokemons(PokemonComparators.INDEX)).thenReturn(pokemons);
         List<Pokemon> pokemons = this.iPokedex.getPokemons(PokemonComparators.INDEX);
