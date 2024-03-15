@@ -1,18 +1,18 @@
-version: 2.1
-
+version: 2
+orbs:
+  codecov: codecov/codecov@4.0.1
 jobs:
   build:
     docker:
-      - image: circleci/openjdk:8-jdk  # Utilisation d'une image Docker avec Java 8
-
-    working_directory: ~/project
-
+      - image: circleci/openjdk:8-jdk
     steps:
-      - checkout  # Récupération du code source du repository
-
+      - checkout  # Récupère le code source dans le répertoire de travail
       - run:
-          name: Execute unit tests with Maven
-          command: mvn test  # Exécution des tests unitaires avec Maven
+          name: Run Tests
+          command: mvn test
+      - run:
+          name : upload-to-codecov
+          command: bash <(curl -s https://codecov.io/bash)
 
 workflows:
   version: 2
@@ -21,4 +21,8 @@ workflows:
       - build:
           filters:
             branches:
-              only: master  
+              only:
+                - master
+  upload-to-codecov:
+    jobs:
+      - build
