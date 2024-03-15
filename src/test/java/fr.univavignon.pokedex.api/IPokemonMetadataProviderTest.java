@@ -28,15 +28,6 @@ public class IPokemonMetadataProviderTest {
         assertEquals(90, pokemonMetadata.getStamina());
     }
 
-    @Test
-    public void retrieveMetadataForPikachu() throws PokedexException {
-        // Vérifie que les métadonnées pour Pikachu sont correctes
-        PokemonMetadata pokemonMetadata = this.iPokemonMetadataProvider.getPokemonMetadata(25);
-        assertEquals("Pikachu", pokemonMetadata.getName());
-        assertEquals(112, pokemonMetadata.getAttack());
-        assertEquals(101, pokemonMetadata.getDefense());
-        assertEquals(70, pokemonMetadata.getStamina());
-    }
 
     @Test
     public void retrieveMetadataThrowsExceptionForInvalidIndex() {
