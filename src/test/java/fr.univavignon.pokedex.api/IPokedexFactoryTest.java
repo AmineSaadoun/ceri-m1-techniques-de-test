@@ -1,43 +1,51 @@
 package fr.univavignon.pokedex.api;
 
-import org.junit.Before;
-import org.junit.Test;
 import org.junit.jupiter.api.BeforeAll;
-import org.mockito.Mockito;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInstance;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class IPokedexFactoryTest {
 
     private IPokedexFactory pokedexFactory;
-    private IPokemonMetadataProvider pokemonMetadataProvider;
+    private IPokemonMetadataProvider metadataProvider;
     private IPokemonFactory pokemonFactory;
-    @Before
+
+    @BeforeAll
     public void setUp() {
-        this.pokedexFactory = mock(IPokedexFactory.class);
-        this.pokemonMetadataProvider = mock(IPokemonMetadataProvider.class);
-        this.pokemonFactory = mock(IPokemonFactory.class);
-    }
-    @Test
-    public void createPokedexTest() {
-        when(this.pokedexFactory.createPokedex(this.pokemonMetadataProvider, this.pokemonFactory)).
-                thenReturn(mock(IPokedex.class));
-        IPokedex iPokedex = pokedexFactory.createPokedex(pokemonMetadataProvider, pokemonFactory);
-        assertNotEquals(null, iPokedex);
+        this.pokedexFactory = new PokedexFactory();
+        this.metadataProvider = new PokemonMetadataProviderImpl();
+        this.pokemonFactory = new PokemonFactory();
     }
 
+    @Test
+    public void testCreatePokedex() {
+        IPokedex iPokedex = pokedexFactory.createPokedex(metadataProvider, pokemonFactory);
+        assertNotNull(iPokedex);
+    }
 
     @Test
-    public void createPokedexWithZeroSizeTest() {
-        when(this.pokedexFactory.createPokedex(this.pokemonMetadataProvider, this.pokemonFactory)).
-                thenReturn(mock(IPokedex.class));
-        IPokedex iPokedex = pokedexFactory.createPokedex(pokemonMetadataProvider, pokemonFactory);
-        assertNotEquals(null, iPokedex);
-        when(iPokedex.size()).thenReturn(0);
+    public void throwExceptionIfParamsNull() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            pokedexFactory.createPokedex(null, null);
+        });
+        assertThrows(IllegalArgumentException.class, () -> {
+            pokedexFactory.createPokedex(null, pokemonFactory);
+        });
+        assertThrows(IllegalArgumentException.class, () -> {
+            pokedexFactory.createPokedex(metadataProvider, null);
+        });
+    }
+
+    @Test
+    public void testThatPokedexIsGood() {
+        IPokedex iPokedex = pokedexFactory.createPokedex(metadataProvider, pokemonFactory);
+        assertNotNull(iPokedex);
         assertEquals(0, iPokedex.size());
     }
-
-
 }
