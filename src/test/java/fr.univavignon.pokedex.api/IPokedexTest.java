@@ -78,6 +78,7 @@ public class IPokedexTest {
         });
     }
 
+
     @Test
     void getPokemons() {
         when(this.iPokedex.getPokemons()).thenReturn(pokemons);
@@ -166,7 +167,23 @@ public class IPokedexTest {
 
         List<Pokemon> pokemons = pokedex.getPokemons();
         assertThrows(UnsupportedOperationException.class, () -> {
-            pokemons.add(new Pokemon(2, "Amine", 190, 201, 140, 610, 60, 4000, 4, 0.91));
+            pokemons.add(new Pokemon(2, "Amine", 199, 202, 140, 610, 60, 4000, 4, 0.91));
+        });
+    }
+    @Test
+    void testAdd() {
+        IPokemonFactory pokemonFactory = mock(IPokemonFactory.class);
+        IPokemonMetadataProvider pokemonMetadataProvider = mock(IPokemonMetadataProvider.class);
+        IPokedex pokedex = new PokedexImplement(pokemonFactory, pokemonMetadataProvider);
+
+        Pokemon pokemon = new Pokemon(0, "Bulbasaur", 126, 126, 90, 613, 64, 4000, 4, 0.91);
+
+        int index = pokedex.addPokemon(pokemon);
+        assertEquals(0, index);
+
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            pokedex.addPokemon(pokemon);
         });
     }
 }
