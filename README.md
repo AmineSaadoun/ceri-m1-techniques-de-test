@@ -28,8 +28,8 @@ Le rendu des TPs se fait au rythme suivant :
 
 - TP1 : 2ème séance
 - TP2 : 2ème séance
-- TP3 : 3ème séance
-- TP4 : 5ème séance
+- TP3 : 3ème séance    Commited on Mar 6, 2024
+- TP4 : 5ème séance    Commited on Mar 20, 2024
 - TP5 : dernière séance
 - TP6 : dernière séance
 
