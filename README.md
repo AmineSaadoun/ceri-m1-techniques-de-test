@@ -4,7 +4,8 @@
 [![codecov](https://codecov.io/gh/AmineSaadoun/ceri-m1-techniques-de-test/graph/badge.svg?token=8BQTZ3EETD)](https://codecov.io/gh/AmineSaadoun/ceri-m1-techniques-de-test)
 [![Checkstyle](/target/site/badges/checkstyle-result.svg)](/target/checkstyle-result.xml)
 
-Lien vers Javadoc : https://aminesaadoun.github.io/ceri-m1-techniques-de-test/
+Lien vers Javadoc : [Javadoc](https://aminesaadoun.github.io/ceri-m1-techniques-de-test/)
+
 ## Introduction
 
 Vous allez à travers ces projet mettre en application une partie des aspects évoqués en cours vis à vis des techniques de tests.  
