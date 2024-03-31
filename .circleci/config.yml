@@ -1,6 +1,8 @@
 version: 2
+
 orbs:
   codecov: codecov/codecov@4.0.1
+
 jobs:
   build:
     docker:
@@ -16,16 +18,53 @@ jobs:
       - run:
           name : upload-to-codecov
           command: bash <(curl -s https://codecov.io/bash)
+      - run:
+          name: Make docs
+          command: mvn javadoc:javadoc
+      - persist_to_workspace:
+          root: target/site
+          paths: apidocs
+
+  docs-deploy:
+    docker:
+      - image: cimg/node:21.6.2
+    steps:
+      - checkout
+      - attach_workspace:
+          at: target/site
+      - run:
+          name: Disable jekyll builds
+          command: touch target/site/apidocs/.nojekyll
+      - run:
+          name: Install and configure dependencies
+          command: |
+            npm install -g --silent gh-pages@2.0.1
+            git config user.email "aminesaadoun50@gmail.com"
+            git config user.name "aminesaadoune"
+      - add_ssh_keys:
+          fingerprints:
+            - "SHA256:DGosJAVbDTxk5jFAZ4T9PJ4uYwymZQ+Q48yadSf58gc"
+
+
+      - run:
+          name: Deploy docs to gh-pages branch
+          command: |
+            echo "Deploy docs to gh-pages branch"
+            gh-pages --dotfiles --message "[skip ci] Updates" --dist target/site/apidocs
 
 workflows:
   version: 2
-  build:
+  build-and-deploy:
     jobs:
       - build:
           filters:
             branches:
               only:
                 - master
-  upload-to-codecov:
-    jobs:
-      - build
+      - docs-deploy:
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - master
