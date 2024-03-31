@@ -6,6 +6,19 @@
 
 Lien vers Javadoc : [Javadoc](https://aminesaadoun.github.io/ceri-m1-techniques-de-test/)
 
+# Raport TP6
+Le rapport sur le TP6 montre des problèmes importants dans l'implémentation de la Team Rocket pour la création de Pokémon. Voici les principaux problèmes identifiés :
+
+Génération aléatoire des statistiques : Les statistiques telles que les niveaux d'attaque, de défense et de stamina sont générées de manière aléatoire, ce qui ne suit pas les règles établies de Pokémon. Idéalement, ces valeurs devraient être basées sur les statistiques de base de l'espèce et le niveau de l'individu.
+
+Valeurs par défaut inappropriées : Les statistiques sont définies à 1000 lorsque l'index est négatif. Cela ne correspond pas aux valeurs appropriées et peut causer des problèmes dans le fonctionnement du système.
+
+Gestion des cas inexistants : Il n'y a pas de traitement correct pour les cas où l'index pour lequel il n'y a pas de Pokémon. Une gestion appropriée de cette situation devrait être mise en place pour éviter les erreurs et assurer le bon fonctionnement du système.
+
+Mauvaise conception de la fonction generateRandomStat : Cette fonction semble mal conçue, ce qui entraîne une génération incohérente des statistiques des Pokémon. Il est nécessaire de revoir et de corriger cette conception pour garantir des résultats cohérents.
+
+Indexation incorrecte : L'indexation des Pokémon démarre à -1 au lieu de 0, ce qui est en contradiction avec la convention habituelle. Cela peut causer des confusions et des erreurs dans le traitement des données et doit être corrigé pour suivre les conventions standard.
+
 ## Introduction
 
 Vous allez à travers ces projet mettre en application une partie des aspects évoqués en cours vis à vis des techniques de tests.  
