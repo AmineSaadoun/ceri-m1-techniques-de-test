@@ -1,7 +1,7 @@
 # UCE Génie Logiciel Avancé : Techniques de tests
 
  [![CircleCI](https://img.shields.io/circleci/build/github/AmineSaadoun/ceri-m1-techniques-de-test?label=CircleCI&logo=circleci&style=flat-square)](https://app.circleci.com/pipelines/github/AmineSaadoun/ceri-m1-techniques-de-test?branch=master)
-[![Coverage](https://img.shields.io/badge/coverage-XX%25-brightgreen.svg)](https://app.codecov.io/gh/AmineSaadoun/ceri-m1-techniques-de-test)
+[![codecov](https://codecov.io/gh/AmineSaadoun/ceri-m1-techniques-de-test/graph/badge.svg?token=8BQTZ3EETD)](https://codecov.io/gh/AmineSaadoun/ceri-m1-techniques-de-test)
 [![Checkstyle](/target/site/badges/checkstyle-result.svg)](/target/checkstyle-result.xml)
 
 Lien vers Javadoc : https://aminesaadoun.github.io/ceri-m1-techniques-de-test/
