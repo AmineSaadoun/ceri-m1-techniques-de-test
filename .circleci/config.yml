@@ -11,6 +11,9 @@ jobs:
           name: Run Tests
           command: mvn test
       - run:
+          name: Run Checkstyle
+          command: mvn checkstyle:check
+      - run:
           name : upload-to-codecov
           command: bash <(curl -s https://codecov.io/bash)
 
