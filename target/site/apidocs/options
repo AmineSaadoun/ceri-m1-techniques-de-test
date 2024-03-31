@@ -1,0 +1,24 @@
+-classpath
+'C:/Users/etudiant/.m2/repository/org/mockito/mockito-core/4.9.0/mockito-core-4.9.0.jar;C:/Users/etudiant/.m2/repository/net/bytebuddy/byte-buddy/1.12.16/byte-buddy-1.12.16.jar;C:/Users/etudiant/.m2/repository/net/bytebuddy/byte-buddy-agent/1.12.16/byte-buddy-agent-1.12.16.jar;C:/Users/etudiant/.m2/repository/org/apache/commons/commons-collections4/4.0/commons-collections4-4.0.jar'
+-encoding
+'UTF-8'
+-protected
+-sourcepath
+'C:/Users/etudiant/IdeaProjects/ceri-m1-techniques-de-test-aminee/src/main/java;C:/Users/etudiant/IdeaProjects/ceri-m1-techniques-de-test-aminee/target/generated-sources/annotations'
+-author
+-bottom
+'Copyright &#169; 2024. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'C:/Users/etudiant/IdeaProjects/ceri-m1-techniques-de-test-aminee/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'java-project 1.0-SNAPSHOT API'
+-linkoffline
+'https://docs.oracle.com/javase/8/docs/api' 'C:/Users/etudiant/IdeaProjects/ceri-m1-techniques-de-test-aminee/target/javadoc-bundle-options'
+-use
+-version
+-windowtitle
+'java-project 1.0-SNAPSHOT API'

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PokedexImplement.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">java-project</a> &gt; <a href="index.source.html" class="el_package">fr.univavignon.pokedex.api</a> &gt; <span class="el_source">PokedexImplement.java</span></div><h1>PokedexImplement.java</h1><pre class="source lang-java linenums">package fr.univavignon.pokedex.api;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
+public class PokedexImplement implements IPokedex {
+    private List&lt;Pokemon&gt; pokemons;
+
+    private PokemonMetadata pokemonMetadata;
+
+    private IPokemonFactory pokemonFactory;
+    private IPokemonMetadataProvider pokemonMetadataProvider;
+
+<span class="fc" id="L16">    public static int CAPACITY = 151;</span>
+
+<span class="fc" id="L18">    public PokedexImplement() {</span>
+<span class="fc" id="L19">        this.pokemons = new ArrayList&lt;&gt;(CAPACITY);</span>
+<span class="fc" id="L20">    }</span>
+<span class="fc" id="L21">    public PokedexImplement(IPokemonFactory pokemonFactory, IPokemonMetadataProvider pokemonMetadataProvider) {</span>
+<span class="fc" id="L22">        this.pokemonFactory = pokemonFactory;</span>
+<span class="fc" id="L23">        this.pokemonMetadataProvider = pokemonMetadataProvider;</span>
+<span class="fc" id="L24">        this.pokemons = new ArrayList&lt;&gt;(CAPACITY);</span>
+<span class="fc" id="L25">    }</span>
+    @Override
+    public int size() {
+<span class="fc" id="L28">        return this.pokemons.size();</span>
+    }
+
+    @Override
+    public int addPokemon(Pokemon pokemon) {
+<span class="fc bfc" id="L33" title="All 2 branches covered.">        for (Pokemon pokemon1 : pokemons) {</span>
+<span class="pc bpc" id="L34" title="1 of 2 branches missed.">            if (pokemon1.getIndex() == pokemon.getIndex()) {</span>
+<span class="fc" id="L35">                throw new IllegalArgumentException(&quot;Pokemon already exists&quot;);</span>
+            }
+<span class="nc" id="L37">        }</span>
+<span class="fc" id="L38">        this.pokemons.add(pokemon);</span>
+<span class="fc" id="L39">        return pokemon.getIndex();</span>
+    }
+
+    @Override
+    public Pokemon getPokemon(int id) throws PokedexException {
+<span class="nc bnc" id="L44" title="All 4 branches missed.">        if(id &lt; 0 || id &gt;= CAPACITY)</span>
+        {
+<span class="nc" id="L46">            throw new PokedexException(&quot;Invalid index&quot;);</span>
+        }
+        else
+        {
+<span class="nc bnc" id="L50" title="All 2 branches missed.">            for (Pokemon pokemon : pokemons) {</span>
+<span class="nc bnc" id="L51" title="All 2 branches missed.">                if (pokemon.getIndex() == id) {</span>
+<span class="nc" id="L52">                    return pokemon;</span>
+                }
+<span class="nc" id="L54">            }</span>
+<span class="nc" id="L55">            throw new PokedexException(&quot;Pokemon not found&quot;);</span>
+        }
+    }
+
+    @Override
+    public List&lt;Pokemon&gt; getPokemons() {
+<span class="fc" id="L61">        return Collections.unmodifiableList(this.pokemons);</span>
+    }
+
+    @Override
+    public List&lt;Pokemon&gt; getPokemons(Comparator&lt;Pokemon&gt; order) {
+<span class="nc" id="L66">        this.pokemons.sort(order);</span>
+<span class="nc" id="L67">        return Collections.unmodifiableList(this.pokemons);</span>
+    }
+
+    @Override
+    public Pokemon createPokemon(int index, int cp, int hp, int dust, int candy) {
+<span class="fc" id="L72">        Pokemon pokemonIncomplet = this.pokemonFactory.createPokemon(index, cp, hp, dust, candy);</span>
+        try {
+<span class="fc" id="L74">            this.pokemonMetadata = this.pokemonMetadataProvider.getPokemonMetadata(index);</span>
+<span class="fc" id="L75">            Pokemon PokemonComplet = new Pokemon(index, this.pokemonMetadata.getName(),</span>
+<span class="fc" id="L76">                    this.pokemonMetadata.getAttack(),</span>
+<span class="fc" id="L77">                    this.pokemonMetadata.getDefense(), this.pokemonMetadata.getStamina(),</span>
+<span class="fc" id="L78">                    pokemonIncomplet.getCp(), pokemonIncomplet.getHp(), pokemonIncomplet.getDust(),</span>
+<span class="fc" id="L79">                    pokemonIncomplet.getCandy(),</span>
+<span class="fc" id="L80">                    pokemonIncomplet.getIv());</span>
+<span class="fc" id="L81">            this.pokemons.add(PokemonComplet);</span>
+<span class="fc" id="L82">            return PokemonComplet;</span>
+<span class="nc" id="L83">        } catch (PokedexException e) {</span>
+<span class="nc" id="L84">            e.printStackTrace();</span>
+        }
+<span class="nc" id="L86">        return null;</span>
+
+    }
+
+    @Override
+    public PokemonMetadata getPokemonMetadata(int index) throws PokedexException {
+<span class="nc" id="L92">        return this.pokemonMetadataProvider.getPokemonMetadata(index);</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.11.202310140853</span></div></body></html>
