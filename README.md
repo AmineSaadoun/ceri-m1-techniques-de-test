@@ -43,9 +43,9 @@ Le dossier `src` contient la définition de l'ensemble des interfaces qui seront
 
 Le rendu des TPs se fait au rythme suivant :
 
-- TP1 : 2ème séance
-- TP2 : 2ème séance
-- TP3 : 3ème séance    Commited on Mar 6, 2024
+- TP1 : 2ème séance    Commits on Feb 6, 2024        3552b618cb8942d319d441e92fdefbd05fb03fdc
+- TP2 : 2ème séance    Commits on Feb 6, 2024        3552b618cb8942d319d441e92fdefbd05fb03fdc
+- TP3 : 3ème séance    Commited on Mar 6, 2024       9e97e14ee2ab1dec6eca2137aeb0fc02382b9693
 - TP4 : 5ème séance    Commited on Mar 20, 2024
 - TP5 : dernière séance
 - TP6 : dernière séance
